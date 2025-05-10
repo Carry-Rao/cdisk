@@ -1,11 +1,9 @@
 package routes
 
 import (
-	"net/http"
-
-	"github.com/Carry-Rao/cdisk/handlers"
+	"github.com/Carry-Rao/cdisk/routes"
 )
 
-func IndexHandler() {
-	http.HandleFunc("/", handlers.Index)
+func main() {
+	routes.InitRoutes()
 }
