@@ -3,7 +3,6 @@ package logger
 import (
 	"database/sql"
 	"fmt"
-	"os"
 	"time"
 
 	_ "github.com/mattn/go-sqlite3"
@@ -13,14 +12,7 @@ var ErrorDB *sql.DB
 
 func InitErrorDB() {
 	//检查是否存在logs文件夹，不存在则创建
-	if _, err := os.Stat("logs"); os.IsNotExist(err) {
-		os.Mkdir("logs", 0777)
-	}
-	ErrorDB, _ = sql.Open("sqlite3", "logs/error.db")
-	_, err := ErrorDB.Exec("CREATE TABLE errors (TEXT, httperror TEXT, httpmethod TEXT, load TEXT, message TEXT)")
-	if err != nil {
-		fmt.Println("logger/InitErrorDB: ", err)
-	}
+
 }
 
 func Error(httpCode int, httpMethod string, load string, message string) {
@@ -54,9 +46,6 @@ func GetErrors() []map[string]interface{} {
 
 func InitError() {
 	var err error
-	if _, err = os.Stat("logs/error.db"); os.IsNotExist(err) {
-		InitErrorDB()
-	}
 	ErrorDB, err = sql.Open("sqlite3", "logs/error.db")
 	if err != nil {
 		fmt.Println("logger/InitError: ", err)

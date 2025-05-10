@@ -24,7 +24,7 @@ func Login(username string, password string) (bool, error) {
 	}
 }
 
-func authToken(token string) (string, error) {
+func AuthToken(token string) (string, error) {
 	db, err := sql.Open("sqlite3", "database/users.db")
 	if err != nil {
 		return "", err

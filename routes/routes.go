@@ -9,7 +9,7 @@ import (
 func InitRoutes() *mux.Router {
 	router := mux.NewRouter().StrictSlash(true)
 	index(router)
-	api(router)
+	InitApi(router)
 	return router
 }
 

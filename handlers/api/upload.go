@@ -3,7 +3,8 @@ package handlers
 import (
 	"net/http"
 
-	models "github.com/Carry-Rao/cdisk/models"
+	files "github.com/Carry-Rao/cdisk/models/files"
+	auth "github.com/Carry-Rao/cdisk/models/login"
 )
 
 func ApiUploadHandler(w http.ResponseWriter, r *http.Request) {
@@ -23,9 +24,13 @@ func ApiUploadHandler(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "token is empty", http.StatusUnauthorized)
 		return
 	}
-	models.authToken(token)
+	user, err := auth.AuthToken(token)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusUnauthorized)
+		return
+	}
 	//保存文件到服务器
-	err = models.SaveFile(filename, file)
+	err = files.SaveFile(filename, user, file)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return

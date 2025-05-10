@@ -9,7 +9,7 @@ import (
 )
 
 // GenerateMainScript 生成JavaScript加载脚本
-func GenerateMainScript(baseDir string) error {
+func models(baseDir string) error {
 	// 确保基础目录存在
 	if _, err := os.Stat(baseDir); os.IsNotExist(err) {
 		return fmt.Errorf("base directory %s does not exist", baseDir)
