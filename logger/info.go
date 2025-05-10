@@ -28,13 +28,7 @@ func InitInfoDB() {
 }
 
 func Info(httpCode int, httpMethod string, load string, message string) {
-	//检测info.db格式是否正确，如果不正确则重新创建
-	_, err := InfoDB.Exec("SELECT * FROM info")
-	if err != nil {
-		fmt.Println("logger/Info: ", err)
-		InitInfoDB()
-	}
-	_, err = InfoDB.Exec("INSERT INTO info (time, httperror, httpmethod, load, message) VALUES (?, ?, ?, ?, ?)", time.Now(), httpCode, httpMethod, load, message)
+	_, err := InfoDB.Exec("INSERT INTO info (time, httperror, httpmethod, load, message) VALUES (?, ?, ?, ?, ?)", time.Now(), httpCode, httpMethod, load, message)
 	if err != nil {
 		fmt.Println("logger/Info: ", err)
 	}

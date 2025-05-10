@@ -24,12 +24,7 @@ func InitErrorDB() {
 }
 
 func Error(httpCode int, httpMethod string, load string, message string) {
-	_, err := ErrorDB.Exec("SELECT * FROM errors")
-	if err != nil {
-		fmt.Println("logger/Error: ", err)
-		InitErrorDB()
-	}
-	_, err = ErrorDB.Exec("INSERT INTO errors (time, httperror, httpmethod, load, message) VALUES (?, ?, ?, ?, ?)", time.Now(), httpCode, httpMethod, load, message)
+	_, err := ErrorDB.Exec("INSERT INTO errors (time, httperror, httpmethod, load, message) VALUES (?, ?, ?, ?, ?)", time.Now(), httpCode, httpMethod, load, message)
 	if err != nil {
 		fmt.Println("logger/Error: ", err)
 	}

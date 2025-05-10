@@ -3,13 +3,14 @@ package routes
 import (
 	"net/http"
 
-	"github.com/Carry-Rao/webdisk/handlers"
+	"github.com/Carry-Rao/cdisk/handlers"
 	"github.com/gorilla/mux"
 )
 
 func api(router *mux.Router) {
-	http.HandleFunc("/api/upload", handlers.UploadHandler)
-	http.HandleFunc("/api/download", handlers.DownloadHandler)
-	http.HandleFunc("/api/delete", handlers.DeleteHandler)
-	http.HandleFunc("/api/list", handlers.ListHandler)
+	router.HandleFunc("/api/upload", handlers.ApiUploadHandler).Methods(http.MethodPut)
+	router.HandleFunc("/api/download", handlers.ApiDownloadHandler).Methods(http.MethodGet)
+	router.HandleFunc("/api/delete", handlers.ApiDeleteHandler).Methods(http.MethodDelete)
+	router.HandleFunc("/api/list", handlers.ApiListHandler).Methods(http.MethodGet)
+	router.HandleFunc("/api/info", handlers.ApiInfoHandler).Methods(http.MethodGet)
 }
