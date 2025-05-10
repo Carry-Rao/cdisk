@@ -1,9 +1,12 @@
 package routes
 
 import (
-	"github.com/Carry-Rao/cdisk/routes"
+	"net/http"
+
+	"github.com/Carry-Rao/cdisk/handlers"
+	"github.com/gorilla/mux"
 )
 
-func main() {
-	routes.Routes()
+func index(route *mux.Router) {
+	route.HandleFunc("/", handlers.Index).Methods(http.MethodGet)
 }
