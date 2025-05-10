@@ -3,7 +3,7 @@ package routes
 import (
 	"net/http"
 
-	"github.com/Carry-Rao/webdisk/handlers"
+	"github.com/Carry-Rao/cdisk/handlers"
 	"github.com/gorilla/mux"
 )
 
@@ -18,5 +18,6 @@ func InitRoutes() *mux.Router {
 	return router
 }
 
-func IndexHandler(w http.ResponseWriter, r *http.Request) {
+func Router() http.Handler {
+	return InitRoutes()
 }
