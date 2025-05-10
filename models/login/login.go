@@ -1,9 +1,43 @@
 package models
 
 import (
+	"database/sql"
+
 	_ "github.com/mattn/go-sqlite3"
 )
 
 func Login(username string, password string) (bool, error) {
-	result, err := datebase("user", "SELECT * FROM users WHERE username =? AND password =?", username, password)
+	db, err := sql.Open("sqlite3", "database/users.db")
+	if err != nil {
+		return false, err
+	}
+	defer db.Close()
+	var result string
+	err = db.QueryRow("SELECT password FROM users WHERE username = ?", username).Scan(&result)
+	if err != nil {
+		return false, err
+	}
+	if result == password {
+		return true, nil
+	} else {
+		return false, nil
+	}
+}
+
+func authToken(token string) (string, error) {
+	db, err := sql.Open("sqlite3", "database/users.db")
+	if err != nil {
+		return "", err
+	}
+	defer db.Close()
+	var result string
+	err = db.QueryRow("SELECT username FROM users WHERE token = ?", token).Scan(&result)
+	if err != nil {
+		return "", err
+	}
+	if result == token {
+		return result, nil
+	} else {
+		return "", nil
+	}
 }

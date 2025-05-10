@@ -3,7 +3,7 @@ package handlers
 import (
 	"net/http"
 
-	"github.com/Carry-Rao/cdisk/models"
+	models "github.com/Carry-Rao/cdisk/models"
 )
 
 func ApiUploadHandler(w http.ResponseWriter, r *http.Request) {
