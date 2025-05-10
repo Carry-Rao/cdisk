@@ -9,7 +9,6 @@ import (
 
 func InitRoutes() *mux.Router {
 	router := mux.NewRouter().StrictSlash(true)
-
 	router.HandleFunc("/", handlers.IndexHandler).Methods("GET")
 	router.HandleFunc("/upload", handlers.UploadHandler).Methods("POST")
 	router.HandleFunc("/download/{file_name}", handlers.DownloadHandler).Methods("GET")
