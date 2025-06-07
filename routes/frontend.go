@@ -7,7 +7,22 @@ import (
 )
 
 func frontendRoutes(r *mux.Router) {
+	var err error
 
+	err = indexRoutes(r)
+	if err != nil {
+		return
+	}
+
+	err = loginRoutes(r)
+	if err != nil {
+		return
+	}
+
+	err = registerRoutes(r)
+	if err != nil {
+		return
+	}
 }
 
 func indexRoutes(r *mux.Router) error {
