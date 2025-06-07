@@ -1,7 +1,7 @@
 package routes
 
 import (
-	"github.com/Carry-Rao/cdisk/handlers"
+	// "github.com/Carry-Rao/cdisk/handlers"
 
 	"github.com/gorilla/mux"
 )
