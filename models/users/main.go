@@ -14,7 +14,7 @@ type User struct {
 
 var db *sql.DB
 
-func InitDB(path string) {
+func InitDB() {
 	var err error
 	db, err = sql.Open("sqlite3", "db/users.db")
 	if err != nil {
@@ -25,7 +25,9 @@ func InitDB(path string) {
 			uid integer,
 			username text,
 			password text,
-			token json,
+			email text,
+			gid integer,
+			token json
 		);
 	`)
 	if err != nil {

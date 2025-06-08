@@ -1,20 +1,23 @@
 package routes
 
 import (
+	"github.com/Carry-Rao/cdisk/handlers"
 	"github.com/gorilla/mux"
 )
 
-func apiRoutes() *mux.Router {
+func loginApiRoutes(r *mux.Router) {
+	r.HandleFunc("/api/user/login", handlers.LoginApiHandler).Methods("POST")
 }
 
-func loginApiRoutes(r *mux.Router) *mux.Router {
-	r := mux.NewRouter()
-	r.HandleFunc("/api/login", handlers.loginApiHandler).Methods("POST")
-	return r
+func registerApiRoutes(r *mux.Router) {
+	r.HandleFunc("/api/user/register", handlers.RegisterApiHandler).Methods("POST")
 }
 
-func registerApiRoutes(r *mux.Router) *mux.Router {
-	r := mux.NewRouter()
-	r.HandleFunc("/api/register", handlers.registerApiHandler).Methods("POST")
-	return r
+func get_name(r *mux.Router) {
+
+}
+
+func apiRoutes(r *mux.Router) {
+	loginApiRoutes(r)
+	registerApiRoutes(r)
 }

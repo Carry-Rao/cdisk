@@ -1,38 +1,32 @@
 package routes
 
 import (
-	// "github.com/Carry-Rao/cdisk/handlers"
+	"net/http"
+
+	"github.com/Carry-Rao/cdisk/handlers"
 
 	"github.com/gorilla/mux"
 )
 
 func frontendRoutes(r *mux.Router) {
-	var err error
-
-	err = indexRoutes(r)
-	if err != nil {
-		return
-	}
-
-	err = loginRoutes(r)
-	if err != nil {
-		return
-	}
-
-	err = registerRoutes(r)
-	if err != nil {
-		return
-	}
+	indexRoutes(r)
+	loginRoutes(r)
+	registerRoutes(r)
+	staticsRoutes(r)
 }
 
-func indexRoutes(r *mux.Router) error {
-	return r.HandleFunc("/", handlers.indexHandler).Methods("GET")
+func indexRoutes(r *mux.Router) {
+	r.HandleFunc("/", handlers.IndexHandler).Methods("GET")
 }
 
-func loginRoutes(r *mux.Router) error {
-	return r.HandleFunc("/login", handlers.LoginHandler).Methods("GET", "POST")
+func loginRoutes(r *mux.Router) {
+	r.HandleFunc("/login", handlers.LoginHandler).Methods("GET", "POST")
 }
 
-func registerRoutes(r *mux.Router) error {
-	return r.HandleFunc("/register", handlers.RegisterHandler).Methods("GET", "POST")
+func registerRoutes(r *mux.Router) {
+	r.HandleFunc("/register", handlers.RegisterHandler).Methods("GET", "POST")
+}
+
+func staticsRoutes(r *mux.Router) {
+	r.PathPrefix("/statics/").Handler(http.StripPrefix("/statics/", http.FileServer(http.Dir("statics/"))))
 }

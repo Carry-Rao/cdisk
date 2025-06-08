@@ -4,6 +4,6 @@ import (
 	"net/http"
 )
 
-func Index(w http.ResponseWriter, r *http.Request) {
-	w.Write([]byte("Hello, world!"))
+func IndexHandler(w http.ResponseWriter, r *http.Request) {
+	http.ServeFile(w, r, "statics/index.html")
 }
