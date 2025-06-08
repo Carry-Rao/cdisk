@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>登录 - {{ title }}</title>
+    <link rel="stylesheet" href="/statics/css/utils.css">
+    <link rel="stylesheet" href="/statics/css/login.css">
+</head>
+<body>
+    <div id="app">
+        <h1>{{ title }}</h1>
+        <form action="/api/users/login" method="post">
+            <label for="username">用户名:</label>
+            <input type="text" id="username" name="username" v-model="username" required>
+            <br>
+            <label for="password">密码:</label>
+            <input type="password" id="password" name="password" v-model="password" required>
+            <br>
+            <div class="button-container">
+                <button class="notlogin register" type="button" @click="register">注册</button>
+                <button class="notlogin reset-password" type="button" @click="resetPassword">忘记密码</button>
+            </div>
+            <br>
+            <button type="submit">登录</button>
+        </form>
+    </div>
+
+    <script src="/statics/js/vue.min.js"></script>
+    <script src="/statics/js/utils.js"></script>
+    <script src="/statics/js/login.js"></script>
+</body>
+</html>
