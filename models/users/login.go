@@ -6,9 +6,6 @@ import (
 )
 
 func CheckWithUAP(username string, password string) bool {
-	if !CheckUserExists(username) {
-		return false
-	}
 	rows, err := db.Query("SELECT password FROM users WHERE username =?", username)
 	if err != nil {
 		return false
@@ -31,7 +28,7 @@ func CheckUserExists(username string) bool {
 	db.Prepare("SELECT * FROM users WHERE username =?")
 	rows, err := db.Query("SELECT * FROM users WHERE username =?", username)
 	if err != nil {
-		return true
+		return false
 	}
 	defer rows.Close()
 	if rows.Next() {

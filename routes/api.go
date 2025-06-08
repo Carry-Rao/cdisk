@@ -6,11 +6,11 @@ import (
 )
 
 func loginApiRoutes(r *mux.Router) {
-	r.HandleFunc("/api/user/login", handlers.LoginApiHandler).Methods("POST")
+	r.HandleFunc("/api/users/login", handlers.LoginApiHandler).Methods("POST")
 }
 
 func registerApiRoutes(r *mux.Router) {
-	r.HandleFunc("/api/user/register", handlers.RegisterApiHandler).Methods("POST")
+	r.HandleFunc("/api/users/register", handlers.RegisterApiHandler).Methods("POST")
 }
 
 func get_name(r *mux.Router) {

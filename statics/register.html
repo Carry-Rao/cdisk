@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>注册 - {{title}}</title>
+    <link rel="stylesheet" href="/statics/css/login.css">
+    <link rel="stylesheet" href="/statics/css/register.css">
+</head>
+<body>
+    <div id="app">
+        <h1>{{ title }}</h1>
+        <form action="/api/users/register" method="post" id="register_form">
+            <label for="email">邮箱:</label>
+            <input type="email" id="email" name="email" v-model="email" required>
+            <br>
+            <label for="username">用户名:</label>
+            <input type="text" id="username" name="username" v-model="username" required>
+            <br>
+            <label for="password">密码:</label>
+            <input type="password" id="password" name="password" v-model="password" required>
+            <br>
+            <label for="confirm_password">确认密码:</label>
+            <input type="password" id="confirm_password" name="confirm_password" v-model="confirm_password" required>
+            <br>
+        </form>
+        <button onclick="register()">注册</button>
+    </div>
+</body>
+<script src="/statics/js/safe/crypto-js.min.js"></script>
+<script src="/statics/js/login.js"></script>
+<script src="/statics/js/register.js"></script>
+</html>

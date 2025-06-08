@@ -7,7 +7,7 @@ import (
 )
 
 func RegisterHandler(w http.ResponseWriter, r *http.Request) {
-	http.ServeFile(w, r, "static/register.html")
+	http.ServeFile(w, r, "statics/register.html")
 }
 
 func RegisterApiHandler(w http.ResponseWriter, r *http.Request) {
@@ -15,7 +15,7 @@ func RegisterApiHandler(w http.ResponseWriter, r *http.Request) {
 	username := r.Form.Get("username")
 	password := r.Form.Get("password")
 	email := r.Form.Get("email")
-	if !model.CheckUserExists(username) {
+	if model.CheckUserExists(username) {
 		w.Write([]byte("User already exists"))
 		return
 	}

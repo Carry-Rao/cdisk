@@ -14,6 +14,9 @@ func LoginApiHandler(w http.ResponseWriter, r *http.Request) {
 	r.ParseForm()
 	username := r.FormValue("username")
 	password := r.FormValue("password")
+	if model.CheckUserExists(username) {
+		http.Redirect(w, r, "/login", 401)
+	}
 	if model.CheckWithUAP(username, password) {
 		http.SetCookie(w, &http.Cookie{
 			Name:  "username",

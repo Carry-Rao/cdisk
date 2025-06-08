@@ -17,16 +17,15 @@
             <label for="password">密码:</label>
             <input type="password" id="password" name="password" v-model="password" required>
             <br>
-            <div class="button-container">
-                <button class="notlogin register" type="button" @click="register">注册</button>
-                <button class="notlogin reset-password" type="button" @click="resetPassword">忘记密码</button>
-            </div>
-            <br>
             <button type="submit">登录</button>
         </form>
+        <br>
+        <div class="button-container">
+            <button class="notlogin register" type="button" onclick="register()">注册</button>
+            <button class="notlogin reset-password" type="button">忘记密码</button>
+        </div>
     </div>
 
-    <script src="/statics/js/vue.min.js"></script>
     <script src="/statics/js/utils.js"></script>
     <script src="/statics/js/login.js"></script>
 </body>
