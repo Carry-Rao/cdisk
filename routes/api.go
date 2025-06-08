@@ -14,10 +14,11 @@ func registerApiRoutes(r *mux.Router) {
 }
 
 func get_name(r *mux.Router) {
-
+	r.HandleFunc("/api/system/get_name", handlers.GetName).Methods("GET")
 }
 
 func apiRoutes(r *mux.Router) {
 	loginApiRoutes(r)
 	registerApiRoutes(r)
+	get_name(r)
 }

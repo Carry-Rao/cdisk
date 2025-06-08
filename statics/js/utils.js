@@ -5,18 +5,18 @@ xhr = new XMLHttpRequest();
 xhr.open("GET", "/api/system/get_name", true);
 xhr.onreadystatechange = function() {
     if (xhr.readyState == 4 && xhr.status == 200) {
-        var res = JSON.parse(xhr.responseText);
+        var res = xhr.responseText;
         //使用vue.min.js渲染网盘名称
         new Vue({
             el: 'title',
             data: {
-                title: res.name
+                title: res
             }
         })
         new Vue({
             el: '#headbar',
             data: {
-                title: res.name
+                title: res
             }
         })
     }

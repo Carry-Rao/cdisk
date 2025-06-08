@@ -7,5 +7,5 @@ import (
 )
 
 func GetName(w http.ResponseWriter, r *http.Request) {
-	model.GetName()
+	w.Write([]byte(model.GetName()))
 }

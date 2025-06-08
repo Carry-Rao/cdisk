@@ -21,4 +21,13 @@ func InitDB() {
 			name TEXT
 		);
 	`)
+	rows, err := db.Query("SELECT name FROM system")
+	if err != nil {
+		log.Error("models/system/InitDB()", err.Error())
+		return
+	}
+	defer rows.Close()
+	if !rows.Next() {
+		db.Exec("INSERT INTO system (name) VALUES ('Cdisk网盘')")
+	}
 }
