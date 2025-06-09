@@ -10,3 +10,8 @@ xhr.onreadystatechange = function() {
 }
 xhr.send();
 
+function login() {
+    var password = document.querySelector("#password");
+    password.value = CryptoJS.SHA256(password.value);
+    document.getElementById("login-form").submit()
+}

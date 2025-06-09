@@ -10,15 +10,15 @@
 <body>
     <div id="app">
         <h1>{{ title }}</h1>
-        <form action="/api/users/login" method="post">
+        <form action="/api/users/login" method="post" id="login-form">
             <label for="username">用户名:</label>
             <input type="text" id="username" name="username" v-model="username" required>
             <br>
             <label for="password">密码:</label>
             <input type="password" id="password" name="password" v-model="password" required>
-            <br>
-            <button type="submit">登录</button>
         </form>
+        <button onclick="login()">登录</button>
+        <br>
         <br>
         <div class="button-container">
             <button class="notlogin register" type="button" onclick="register()">注册</button>
@@ -26,6 +26,7 @@
         </div>
     </div>
 
+    <script src="/statics/js/safe/crypto-js.min.js"></script>
     <script src="/statics/js/utils.js"></script>
     <script src="/statics/js/login.js"></script>
 </body>

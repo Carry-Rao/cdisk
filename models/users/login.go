@@ -3,6 +3,8 @@ package models
 import (
 	"encoding/json"
 	"math/rand"
+
+	"github.com/Carry-Rao/cdisk/log"
 )
 
 func CheckWithUAP(username string, password string) bool {
@@ -79,21 +81,32 @@ func GetToken(username string) string {
 	}
 	defer rows.Close()
 	if rows.Next() {
-		var tokens []string
-		err := rows.Scan(&tokens)
+		var tokensString string
+		err := rows.Scan(&tokensString)
 		if err != nil {
+			log.Error("/models/users/login.go:GetToken", err.Error())
 			return ""
 		}
-		tokens = append(tokens, token)
+
+		var tokens []string
+		err = json.Unmarshal([]byte(tokensString), &tokens)
+		if err != nil {
+			log.Error("/models/users/login.go:GetToken", err.Error())
+			return ""
+		}
+
+		tokens = append(tokens, token) // 将新的token添加到切片中
 		jsonTokens, err := json.Marshal(tokens)
 		if err != nil {
+			log.Error("/models/users/login.go:GetToken", err.Error())
 			return ""
 		}
+
 		_, err = db.Exec("UPDATE users SET tokens =? WHERE username =?", string(jsonTokens), username)
 		if err != nil {
+			log.Error("/models/users/login.go:GetToken", err.Error())
 			return ""
 		}
-		return token
 	}
 	return token
 }

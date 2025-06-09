@@ -1,4 +1,3 @@
-console.log("utils.js loaded");
 xhr = new XMLHttpRequest();
 
 function get_name() {
@@ -14,7 +13,3 @@ xhr.open("GET", "/api/system/get_name", true);
 }
 
 get_name();
-
-function register() {
-    window.location.href = "/register";
-}

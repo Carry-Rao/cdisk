@@ -16,12 +16,15 @@ func RegisterApiHandler(w http.ResponseWriter, r *http.Request) {
 	password := r.Form.Get("password")
 	email := r.Form.Get("email")
 	if model.CheckUserExists(username) {
-		w.Write([]byte("User already exists"))
+		http.Redirect(w, r, "/register", http.StatusFound)
+		w.Write([]byte("Username already exists"))
 		return
 	}
 	if model.CreateUser(username, password, email) != nil {
-		w.Write([]byte("User created successfully"))
-	} else {
+		http.Redirect(w, r, "/register", http.StatusFound)
 		w.Write([]byte("Error creating user"))
+	} else {
+		http.Redirect(w, r, "/login", http.StatusFound)
+		w.Write([]byte("User created successfully"))
 	}
 }
